@@ -1,12 +1,226 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Performance Prediction | End-to-End ML Project</title>
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:40px;
+
+}
+
+.login{
+
+width:100%;
+
+max-width:900px;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(15px);
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+border:1px solid rgba(255,255,255,.3);
+
+}
+
+h1{
+
+text-align:center;
+
+color:white;
+
+margin-bottom:30px;
+
+font-size:34px;
+
+}
+
+legend{
+
+text-align:center;
+
+font-size:24px;
+
+font-weight:bold;
+
+margin-bottom:30px;
+
+color:white;
+
+}
+
+form{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+
+}
+
+.mb-3{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+label{
+
+margin-bottom:8px;
+
+font-weight:600;
+
+color:white;
+
+}
+
+.form-control{
+
+padding:13px;
+
+border:none;
+
+border-radius:10px;
+
+font-size:15px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.form-control:focus{
+
+transform:scale(1.02);
+
+box-shadow:0 0 15px rgba(255,255,255,.5);
+
+}
+
+.btn{
+
+grid-column:span 2;
+
+padding:15px;
+
+font-size:18px;
+
+font-weight:bold;
+
+border:none;
+
+border-radius:12px;
+
+background:white;
+
+color:#0077ff;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+background:#0077ff;
+
+color:white;
+
+transform:translateY(-3px);
+
+}
+
+.result{
+
+margin-top:30px;
+
+background:white;
+
+padding:18px;
+
+border-radius:12px;
+
+text-align:center;
+
+font-size:24px;
+
+font-weight:bold;
+
+color:#0077ff;
+
+}
+
+@media(max-width:768px){
+
+form{
+
+grid-template-columns:1fr;
+
+}
+
+.btn{
+
+grid-column:span 1;
+
+}
+
+.login{
+
+padding:25px;
+
+}
+
+h1{
+
+font-size:28px;
+
+}
+
+}
+
+</style>
+
+</head>
 <body>
     <div class="login">
-       <h1>Student Exam Performance Indicator</h1>
+       <h1>Student Performance Prediction</h1>
    
-       <form action="{{ url_for('predict_datapoint')}}" method="post">
-        <h1>
-            <legend>Student Exam Performance Prediction</legend>
-        </h1>
+       <form action="{{ url_for('home')}}" method="post">
         <div class="mb-3">
             <label class="form-label">Gender</label>
             <select class="form-control" name="gender" placeholder="Enter you Gender" required>
@@ -101,11 +315,17 @@
                 placeholder="Enter your Reading Score" min='0' max='100' />
         </div>
         <div class="mb-3">
-            <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />
+            <input class="btn btn-primary" type="submit" value="Predict Student Performance" required />
         </div>
     </form>
-    <h2>
-       The prediction is {{results}}
-    </h2>
+    <div class="result">
+
+🎯 Predicted Maths Score
+
+<br><br>
+
+{{ results }}
+
+</div>
    <body>
 </html>
